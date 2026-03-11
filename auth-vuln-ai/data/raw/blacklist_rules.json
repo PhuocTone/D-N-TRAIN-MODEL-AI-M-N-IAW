@@ -1,0 +1,104 @@
+[
+  {
+    "id": "JWT_SECRET_TOO_SHORT",
+    "description": "Weak JWT Secret",
+    "path": "jwt.secret",
+    "operator": "length_lt",
+    "value": 32,
+    "risk": "Short JWT secrets can be brute-forced, allowing attackers to forge authentication tokens.",
+    "recommendation": "Use a secret key with at least 32–64 characters and high entropy."
+  },
+  {
+    "id": "COOKIE_NOT_SECURE",
+    "description": "Cookie Not Secure",
+    "path": "cookie.secure",
+    "operator": "is_false",
+    "value": null,
+    "risk": "Cookies can be transmitted over HTTP and intercepted by attackers.",
+    "recommendation": "Enable Secure flag to ensure cookies are only sent over HTTPS."
+  },
+  {
+    "id": "SESSION_TIMEOUT_TOO_LONG",
+    "description": "Session Timeout Too Long",
+    "path": "session.timeout",
+    "operator": "gt",
+    "value": 1800,
+    "risk": "Long sessions increase the risk of session hijacking.",
+    "recommendation": "Reduce session timeout to 900–1800 seconds (15–30 minutes)."
+  },
+  {
+    "id": "JWT_ALGO_NONE",
+    "description": "JWT algorithm set to none or insecure",
+    "path": "jwt.algorithm",
+    "operator": "equals",
+    "value": "none",
+    "risk": "Using 'none' algorithm allows attackers to bypass signature verification.",
+    "recommendation": "Use a secure algorithm like RS256 or HS256 with a strong secret."
+  },
+  {
+    "id": "COOKIE_HTTPONLY_FALSE",
+    "description": "Cookie HttpOnly flag disabled",
+    "path": "cookie.http_only",
+    "operator": "is_false",
+    "value": null,
+    "risk": "Cookies accessible to JavaScript increase the risk of XSS-based session theft.",
+    "recommendation": "Enable HttpOnly on session/auth cookies."
+  }
+,
+  {
+    "id": "MFA_NOT_ENABLED",
+    "description": "Multi-factor authentication not enabled",
+    "path": "mfa.enabled",
+    "operator": "is_false",
+    "value": null,
+    "risk": "Absence of MFA increases risk from credential compromise.",
+    "recommendation": "Enable MFA for account-sensitive operations and logins."
+  },
+  {
+    "id": "TOKEN_STORAGE_LOCALSTORAGE",
+    "description": "Insecure token storage (localStorage)",
+    "path": "token.storage",
+    "operator": "equals",
+    "value": "localStorage",
+    "risk": "Storing tokens in localStorage exposes them to XSS attacks.",
+    "recommendation": "Store tokens in secure, HttpOnly cookies or use secure storage mechanisms."
+  },
+  {
+    "id": "TOKEN_ROTATION_DISABLED",
+    "description": "Token rotation not enabled",
+    "path": "token.rotation_enabled",
+    "operator": "is_false",
+    "value": null,
+    "risk": "Without rotating refresh tokens, stolen tokens remain usable for longer.",
+    "recommendation": "Enable refresh token rotation and revoke on reuse."
+  },
+  {
+    "id": "JWT_EXPIRES_TOO_LONG",
+    "description": "JWT expiration too long",
+    "path": "jwt.expires_in",
+    "operator": "gt",
+    "value": 86400,
+    "risk": "Very long-lived tokens increase the window for token misuse.",
+    "recommendation": "Use short-lived access tokens (minutes to an hour) and rotate refresh tokens."
+  },
+  {
+    "id": "COOKIE_SAMESITE_NONE",
+    "description": "Cookie SameSite set to None",
+    "path": "cookie.same_site",
+    "operator": "equals",
+    "value": "None",
+    "risk": "SameSite=None allows cross-site requests and can increase CSRF risk unless combined with other protections.",
+    "recommendation": "Prefer SameSite=Lax or Strict for auth cookies when possible, and pair with CSRF protections."
+  },
+  {
+    "id": "PASSWORD_HASH_ALGO_WEAK",
+    "description": "Weak password hashing algorithm configured",
+    "path": "password.hash_algo",
+    "operator": "contains",
+    "value": "md5",
+    "risk": "MD5 and similar fast hashes are unsuitable for password storage.",
+    "recommendation": "Use adaptive hashing such as bcrypt, scrypt, or Argon2 with appropriate parameters."
+  }
+]
+
+
