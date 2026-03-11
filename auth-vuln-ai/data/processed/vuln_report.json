@@ -1,0 +1,108 @@
+{
+  "config_path": "auth-vuln-ai/data/raw/sample_auth_config.json",
+  "overall_risk": "Critical",
+  "score": 39,
+  "ml_details": [
+    "9 blacklist rule(s) matched",
+    "JWT secret very short (<16)",
+    "Session timeout > 3600s",
+    "Cookie Secure flag disabled",
+    "Cookie HttpOnly flag disabled",
+    "Insecure token storage (localStorage)"
+  ],
+  "features": {
+    "jwt_secret_length": 11,
+    "jwt_expires_in": 3600,
+    "jwt_algorithm": "HS256",
+    "cookie_secure": false,
+    "cookie_http_only": false,
+    "session_timeout": 7200,
+    "mfa_enabled": {
+      "enabled": false
+    },
+    "token_storage": "localStorage"
+  },
+  "issues": [
+    {
+      "configuration_issue": "Weak JWT Secret",
+      "detected_problem": "Weak JWT Secret",
+      "risk_level": "Critical",
+      "description": "Short JWT secrets can be brute-forced, allowing attackers to forge authentication tokens.",
+      "triggered_rule": "JWT_SECRET_TOO_SHORT (length_lt)",
+      "matched_value": "shortsecret",
+      "recommendation": "Use a secret key with at least 32\u201364 characters and high entropy."
+    },
+    {
+      "configuration_issue": "Cookie Not Secure",
+      "detected_problem": "Cookie Not Secure",
+      "risk_level": "Critical",
+      "description": "Cookies can be transmitted over HTTP and intercepted by attackers.",
+      "triggered_rule": "COOKIE_NOT_SECURE (is_false)",
+      "matched_value": false,
+      "recommendation": "Enable Secure flag to ensure cookies are only sent over HTTPS."
+    },
+    {
+      "configuration_issue": "Session Timeout Too Long",
+      "detected_problem": "Session Timeout Too Long",
+      "risk_level": "Critical",
+      "description": "Long sessions increase the risk of session hijacking.",
+      "triggered_rule": "SESSION_TIMEOUT_TOO_LONG (gt)",
+      "matched_value": 7200,
+      "recommendation": "Reduce session timeout to 900\u20131800 seconds (15\u201330 minutes)."
+    },
+    {
+      "configuration_issue": "Cookie HttpOnly flag disabled",
+      "detected_problem": "Cookie HttpOnly flag disabled",
+      "risk_level": "Critical",
+      "description": "Cookies accessible to JavaScript increase the risk of XSS-based session theft.",
+      "triggered_rule": "COOKIE_HTTPONLY_FALSE (is_false)",
+      "matched_value": false,
+      "recommendation": "Enable HttpOnly on session/auth cookies."
+    },
+    {
+      "configuration_issue": "Multi-factor authentication not enabled",
+      "detected_problem": "Multi-factor authentication not enabled",
+      "risk_level": "Critical",
+      "description": "Absence of MFA increases risk from credential compromise.",
+      "triggered_rule": "MFA_NOT_ENABLED (is_false)",
+      "matched_value": false,
+      "recommendation": "Enable MFA for account-sensitive operations and logins."
+    },
+    {
+      "configuration_issue": "Insecure token storage (localStorage)",
+      "detected_problem": "Insecure token storage (localStorage)",
+      "risk_level": "Critical",
+      "description": "Storing tokens in localStorage exposes them to XSS attacks.",
+      "triggered_rule": "TOKEN_STORAGE_LOCALSTORAGE (equals)",
+      "matched_value": "localStorage",
+      "recommendation": "Store tokens in secure, HttpOnly cookies or use secure storage mechanisms."
+    },
+    {
+      "configuration_issue": "Token rotation not enabled",
+      "detected_problem": "Token rotation not enabled",
+      "risk_level": "Critical",
+      "description": "Without rotating refresh tokens, stolen tokens remain usable for longer.",
+      "triggered_rule": "TOKEN_ROTATION_DISABLED (is_false)",
+      "matched_value": false,
+      "recommendation": "Enable refresh token rotation and revoke on reuse."
+    },
+    {
+      "configuration_issue": "Cookie SameSite set to None",
+      "detected_problem": "Cookie SameSite set to None",
+      "risk_level": "Critical",
+      "description": "SameSite=None allows cross-site requests and can increase CSRF risk unless combined with other protections.",
+      "triggered_rule": "COOKIE_SAMESITE_NONE (equals)",
+      "matched_value": "None",
+      "recommendation": "Prefer SameSite=Lax or Strict for auth cookies when possible, and pair with CSRF protections."
+    },
+    {
+      "configuration_issue": "Weak password hashing algorithm configured",
+      "detected_problem": "Weak password hashing algorithm configured",
+      "risk_level": "Critical",
+      "description": "MD5 and similar fast hashes are unsuitable for password storage.",
+      "triggered_rule": "PASSWORD_HASH_ALGO_WEAK (contains)",
+      "matched_value": "md5",
+      "recommendation": "Use adaptive hashing such as bcrypt, scrypt, or Argon2 with appropriate parameters."
+    }
+  ]
+}
