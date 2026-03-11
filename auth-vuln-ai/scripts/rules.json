@@ -1,0 +1,27 @@
+[
+  {
+    "id": "weak_jwt_secret",
+    "description": "Weak JWT secret",
+    "path": "jwt.secret",
+    "operator": "length_lt",
+    "value": 16,
+    "risk": "JWT secret too short",
+    "recommendation": "Use a secret of at least 32 characters"
+  },
+  {
+    "id": "cookie_secure_disabled",
+    "description": "Cookie Secure disabled",
+    "path": "cookie.secure",
+    "operator": "is_false",
+    "risk": "Cookie transmitted without HTTPS",
+    "recommendation": "Enable Secure flag"
+  },
+  {
+    "id": "cookie_http_only_disabled",
+    "description": "Cookie HttpOnly disabled",
+    "path": "cookie.http_only",
+    "operator": "is_false",
+    "risk": "Cookie accessible via JavaScript",
+    "recommendation": "Enable HttpOnly flag"
+  }
+]
