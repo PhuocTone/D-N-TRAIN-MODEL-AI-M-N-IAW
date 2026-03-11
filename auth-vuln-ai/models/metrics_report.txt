@@ -1,0 +1,193 @@
+Best model: DecisionTree
+
+{
+  "DecisionTree": {
+    "best_params": {
+      "max_depth": null,
+      "min_samples_split": 2
+    },
+    "best_score_cv": 1.0,
+    "test_accuracy": 1.0,
+    "classification_report": "                  precision    recall  f1-score   support\n\n insecure_cookie       1.00      1.00      1.00       259\n    long_session       1.00      1.00      1.00        57\nmissing_httponly       1.00      1.00      1.00       129\n            none       1.00      1.00      1.00       331\n weak_jwt_secret       1.00      1.00      1.00       200\n\n        accuracy                           1.00       976\n       macro avg       1.00      1.00      1.00       976\n    weighted avg       1.00      1.00      1.00       976\n",
+    "confusion_matrix": [
+      [
+        259,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        57,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        129,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        331,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        200
+      ]
+    ]
+  },
+  "RandomForest": {
+    "best_params": {
+      "max_depth": null,
+      "min_samples_split": 2,
+      "n_estimators": 50
+    },
+    "best_score_cv": 1.0,
+    "test_accuracy": 1.0,
+    "classification_report": "                  precision    recall  f1-score   support\n\n insecure_cookie       1.00      1.00      1.00       259\n    long_session       1.00      1.00      1.00        57\nmissing_httponly       1.00      1.00      1.00       129\n            none       1.00      1.00      1.00       331\n weak_jwt_secret       1.00      1.00      1.00       200\n\n        accuracy                           1.00       976\n       macro avg       1.00      1.00      1.00       976\n    weighted avg       1.00      1.00      1.00       976\n",
+    "confusion_matrix": [
+      [
+        259,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        57,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        129,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        331,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        200
+      ]
+    ]
+  },
+  "LogisticRegression": {
+    "best_params": {
+      "C": 10,
+      "solver": "lbfgs"
+    },
+    "best_score_cv": 0.9761810958994058,
+    "test_accuracy": 0.9774590163934426,
+    "classification_report": "                  precision    recall  f1-score   support\n\n insecure_cookie       1.00      1.00      1.00       259\n    long_session       0.98      0.84      0.91        57\nmissing_httponly       1.00      1.00      1.00       129\n            none       0.97      0.98      0.98       331\n weak_jwt_secret       0.95      0.97      0.96       200\n\n        accuracy                           0.98       976\n       macro avg       0.98      0.96      0.97       976\n    weighted avg       0.98      0.98      0.98       976\n",
+    "confusion_matrix": [
+      [
+        258,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        48,
+        0,
+        5,
+        4
+      ],
+      [
+        0,
+        0,
+        129,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        324,
+        7
+      ],
+      [
+        1,
+        0,
+        0,
+        4,
+        195
+      ]
+    ]
+  }
+}
+
+Detailed classification reports:
+
+== DecisionTree ==
+                  precision    recall  f1-score   support
+
+ insecure_cookie       1.00      1.00      1.00       259
+    long_session       1.00      1.00      1.00        57
+missing_httponly       1.00      1.00      1.00       129
+            none       1.00      1.00      1.00       331
+ weak_jwt_secret       1.00      1.00      1.00       200
+
+        accuracy                           1.00       976
+       macro avg       1.00      1.00      1.00       976
+    weighted avg       1.00      1.00      1.00       976
+
+Confusion Matrix:
+[[259, 0, 0, 0, 0], [0, 57, 0, 0, 0], [0, 0, 129, 0, 0], [0, 0, 0, 331, 0], [0, 0, 0, 0, 200]]
+
+== RandomForest ==
+                  precision    recall  f1-score   support
+
+ insecure_cookie       1.00      1.00      1.00       259
+    long_session       1.00      1.00      1.00        57
+missing_httponly       1.00      1.00      1.00       129
+            none       1.00      1.00      1.00       331
+ weak_jwt_secret       1.00      1.00      1.00       200
+
+        accuracy                           1.00       976
+       macro avg       1.00      1.00      1.00       976
+    weighted avg       1.00      1.00      1.00       976
+
+Confusion Matrix:
+[[259, 0, 0, 0, 0], [0, 57, 0, 0, 0], [0, 0, 129, 0, 0], [0, 0, 0, 331, 0], [0, 0, 0, 0, 200]]
+
+== LogisticRegression ==
+                  precision    recall  f1-score   support
+
+ insecure_cookie       1.00      1.00      1.00       259
+    long_session       0.98      0.84      0.91        57
+missing_httponly       1.00      1.00      1.00       129
+            none       0.97      0.98      0.98       331
+ weak_jwt_secret       0.95      0.97      0.96       200
+
+        accuracy                           0.98       976
+       macro avg       0.98      0.96      0.97       976
+    weighted avg       0.98      0.98      0.98       976
+
+Confusion Matrix:
+[[258, 1, 0, 0, 0], [0, 48, 0, 5, 4], [0, 0, 129, 0, 0], [0, 0, 0, 324, 7], [1, 0, 0, 4, 195]]
